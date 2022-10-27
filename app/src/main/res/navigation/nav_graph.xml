@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nav_graph">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/myContactsList">
 
+    <fragment
+        android:id="@+id/myContactsList"
+        android:name="com.example.mycontacts.fragments.MyContactsList"
+        android:label="fragment_my_contacts_list"
+        tools:layout="@layout/fragment_my_contacts_list" >
+        <action
+            android:id="@+id/action_myContactsList_to_MyContactDetails"
+            app:destination="@id/MyContactDetails" />
+    </fragment>
+    <fragment
+        android:id="@+id/MyContactDetails"
+        android:name="com.example.mycontacts.fragments.MyContactDetails"
+        android:label="fragment_my_contact_details"
+        tools:layout="@layout/fragment_my_contact_details" />
 </navigation>

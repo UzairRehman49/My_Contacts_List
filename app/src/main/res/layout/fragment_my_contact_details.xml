@@ -3,13 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.MyContactsList">
+    tools:context=".fragments.MyContactDetails">
 
-<androidx.recyclerview.widget.RecyclerView
-    android:id="@+id/rvContactsList"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"/>
-
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Changed" />
 
 </FrameLayout>
