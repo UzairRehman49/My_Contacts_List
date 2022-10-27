@@ -8,10 +8,10 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.mycontacts.R
+import com.example.mycontacts.databinding.ItemContactViewBinding
 
 
 class MyContactsAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
 
 
 
@@ -31,7 +31,7 @@ class MyContactsAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     override fun getItemCount(): Int {
-        return 2
+        return 10
     }
 
     private inner class ContactsViewHolder(itemView: View) : ViewHolder(itemView) {
