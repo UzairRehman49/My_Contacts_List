@@ -1,40 +1,40 @@
-package com.i2c.mcpcc.mycardsv3.adapters
-
-import android.content.Context
+package com.example.mycontacts.adapters
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.mycontacts.R
 import com.example.mycontacts.databinding.ItemContactViewBinding
+import com.example.mycontacts.models.MyContacts
+
+ class MyContactsAdapter<BINDING : ItemContactViewBinding>(var data: ArrayList<MyContacts>?) : RecyclerView.Adapter<MyContactsAdapter.ContactsViewHoler<BINDING>>() {
+
+     private val layoutId: Int = R.layout.item_contact_view
 
 
-class MyContactsAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
 
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactsViewHoler<BINDING> {
+        val binder = DataBindingUtil.inflate<BINDING>(
+            LayoutInflater.from(parent.context),
+            layoutId,
+            parent,
+            false
+        )
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val inflater =
-            parent.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val view = inflater.inflate(R.layout.item_contact_view, parent, false)
-        return ContactsViewHolder(view)
+        return ContactsViewHoler(binder)
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ContactsViewHoler<BINDING>, position: Int) {
 
-
-
-
-
+            holder.binder.apply {
+                contact =data?.get(position)
+                executePendingBindings()
+            }
     }
 
-    override fun getItemCount(): Int {
-        return 10
-    }
+    override fun getItemCount(): Int = data?.size?:0
 
-    private inner class ContactsViewHolder(itemView: View) : ViewHolder(itemView) {
-
+    class ContactsViewHoler<BINDING : ItemContactViewBinding>(val binder: BINDING) : RecyclerView.ViewHolder(binder.root) {
     }
 }
