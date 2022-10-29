@@ -31,16 +31,16 @@ class MyContactsRepository @Inject constructor(@ApplicationContext val context: 
                     val name = cur.getString(cur.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME))
                     var phone :String? = ""
                     var email :String? = ""
-                    var photo :String? = ""
+                    var photo :String? = " "
 
                     if (cur.getInt(cur.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER)) > 0) {
                         val pCur = cr.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ?", arrayOf(id), null)
 
                         while (pCur!!.moveToNext()) {
                             val phoneNo = pCur.getString(pCur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))
-//                            val photoUri = pCur.getString(pCur.getColumnIndex(ContactsContract.CommonDataKinds.Photo.PHOTO_THUMBNAIL_URI))
+                            val photoUri = pCur.getString(pCur.getColumnIndex(ContactsContract.CommonDataKinds.Photo.PHOTO_THUMBNAIL_URI))
                             phone = phoneNo
-//                            photo = photoUri
+                            photo = photoUri
                         }
                         pCur.close()
                     }
@@ -65,7 +65,7 @@ class MyContactsRepository @Inject constructor(@ApplicationContext val context: 
     }
     suspend fun writeToDB(contactsList:ArrayList<MyContacts>)
     {
-        val dbHandler : DBHandler = DBHandler(context)
+        val dbHandler  = DBHandler(context)
 
         withContext(Dispatchers.IO)
         {
