@@ -40,4 +40,6 @@ fun loadImage(view: ImageView, uri: String?) {
 
     if (null != uri && uri.isNotEmpty())
         view.setImageURI(Uri.parse(uri))
+    else
+        view.setImageResource(R.mipmap.ic_placeholder_round)
     }
